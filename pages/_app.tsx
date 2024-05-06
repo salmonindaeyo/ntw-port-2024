@@ -1,5 +1,4 @@
 import '../styles/global.css'
-import '@web/fontawesome-pro/css/all.css'
 
 import { Modal } from 'src/presentation/components/modal'
 import { StoreProvider } from 'src/data/providers/app_store_provider'

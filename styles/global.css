@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import './font.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  /* font-family: 'Montserrat', sans-serif; */
+
+  font-family: "Mitr", sans-serif;
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+}
+  
+::-webkit-scrollbar {
+  width: 5px; 
+}
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 5px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #9FA7AF;
+    border-radius: 5px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: white;
+}
+}
+/* 
+.cursor{
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  background-color: #8fd6ff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000000;
+} */
+
+.trapezium {
+  height: 0;
+  width: 200px;
+  border-bottom: 200px solid rgb(255, 255, 255);
+  border-left:100px solid transparent;
+  transform: rotate(180deg);
+}
+ 
+.paytone-one-regular {
+  font-family: "Paytone One", sans-serif;
+  font-weight: 400;
+
+ 
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.stroke {
+  color: #0F3DE1;
+  text-shadow:
+   -1px -1px 0 #d6deff,  
+    1px -1px 0 #d6deff,
+    -1px 1px 0 #d6deff,
+     1px 1px 0 #d6deff;
+}
+html {
+	font-family: sans-serif;
+	scroll-snap-type: mandatory;
+	scroll-snap-points-y: repeat(100vh);
+	scroll-snap-type: y mandatory;
+}
+section {
+	height: 100vh;
+	scroll-snap-align: start;
+
+	position: relative;
+}
+.scroll-wrapper {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  background-color: #777;
+}
+.scroll-section {
+  scroll-snap-stop: always;
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+.scrollbar {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #E5D6F5;
+    border-radius: 5px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #B184E1;
+    border-radius: 5px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #E5D6F5;
+}
+}

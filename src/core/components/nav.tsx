@@ -4,10 +4,17 @@ import styles from './style.module.scss'
 import { motion } from 'framer-motion'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { perspective } from './anim'
+import { useRouter } from 'next/navigation'
 
 export const Nav = () => {
-  const pathname = usePathname()
+  const router = useRouter()
 
+  const pathname = usePathname()
+  useEffect(() => {
+    if (pathname === '/') {
+      router.push('/main')
+    }
+  }, [])
   const links = [
     {
       title: 'welcome',

@@ -5,6 +5,7 @@ import { Nav } from './nav'
 import { AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false)
@@ -39,7 +40,13 @@ export const Header = () => {
       transition: { duration: 0.75, delay: 0.35, type: 'tween', ease: [0.76, 0, 0.24, 1] },
     },
   }
+  const router = useRouter()
 
+  useEffect(() => {
+    if (pathname === '/') {
+      router.push('/main')
+    }
+  }, [])
   return (
     <Observer>
       {() => (

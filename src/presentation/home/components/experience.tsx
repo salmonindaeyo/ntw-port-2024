@@ -1,14 +1,86 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Observer } from 'mobx-react-lite'
 import skills from 'src/data/skill'
 import exper from 'src/data/exper'
+import Backdrop from '@mui/material/Backdrop'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
+import Fade from '@mui/material/Fade'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import { AnimatePresence, motion } from 'framer-motion'
 
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  borderRadius: 2,
+  p: 4,
+}
 import { ExperItem } from './experItem'
 export const Experience = () => {
   useEffect(() => {}, [])
   const divStyle = {
     backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/blue_gain.png?alt=media&token=fe63ec7e-88ea-448b-86de-a039bffd7f30")`,
     backgroundSize: 'cover',
+  }
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
+  const [eperShow, setExperShow] = React.useState(exper.exper[0])
+  const [isOpen, setIsOpen] = useState(false)
+
+  function modalExper(data) {
+    setExperShow(data)
+    setIsOpen(true)
+  }
+
+  const SpringModal = ({ isOpen, setIsOpen }) => {
+    return (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0, rotate: '12.5deg' }}
+              animate={{ scale: 1, rotate: '0deg' }}
+              exit={{ scale: 0, rotate: '0deg' }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-gradient-to-br from-[#2f0591] to-[#5a7cf7] text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
+            >
+              <div className="relative z-10">
+                <div>
+                  <div>
+                    <img className="w-[200px] object-cover" src={eperShow.logo} />
+                  </div>
+                  <div className="font-bold text-[25px]">
+                    {' '}
+                    {eperShow.title}{' '}
+                    <a className="text-blue-400 underline font-medium" target="_blank" href={eperShow.link}>
+                      link
+                    </a>
+                  </div>
+                  <div> {eperShow.role} </div>
+                  <div className="text-[12px] text-gray-200"> {eperShow.time} </div>
+                  <div className="font-light mt-4"> {eperShow.content} </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    )
   }
   return (
     <Observer>
@@ -75,12 +147,16 @@ export const Experience = () => {
           <div className="h-2/5 bg-white flex justify-center space-x-6 relative">
             <img src="/ntwjunior.png" className="w-[250px] absolute top-[-280px] left-1/3" />
             <div className="ml-10 h-full flex items-center justify-center text-[3rem]">Experience</div>
-            <div data-aos="fade-up" data-aos-duration="3000" className="p-6 mr-10 flex space-x-10 items-center">
+            <div data-aos="fade-up" data-aos-duration="500" className="p-6 mr-10 flex space-x-10 items-center">
               {exper.exper.map((item, index) => (
-                <ExperItem time={item.time} title={item.title} role={item.role} content={item.content} />
+                <div onClick={() => modalExper(item)}>
+                  <ExperItem time={item.time} title={item.title} role={item.role} content={item.content} />
+                </div>
               ))}
             </div>
           </div>
+
+          <SpringModal isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       )}
     </Observer>

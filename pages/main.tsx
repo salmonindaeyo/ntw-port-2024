@@ -1,15 +1,15 @@
 import React from 'react'
 import { HomePage } from 'src/presentation/home/pages/home_page'
 
-const HomeRoute = () => {
+const MainRoute = () => {
   //---------------------
   //   RENDER
   //---------------------
-  return <div></div>
+  return <HomePage />
 }
 export async function getServerSideProps(context) {
   return {
     props: {},
   }
 }
-export default HomeRoute
+export default MainRoute

@@ -2,79 +2,63 @@ import React, { useEffect, useState } from 'react'
 import { Observer } from 'mobx-react-lite'
 import styles from './style.module.scss'
 import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
-import { menuSlide } from './anim'
-import { Link } from './link'
-import { Curve } from './curve'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { perspective } from './anim'
 
-const navItems = [
-  {
-    title: 'Home',
-
-    href: '/',
-  },
-
-  {
-    title: 'Work',
-
-    href: '/work',
-  },
-
-  {
-    title: 'About',
-
-    href: '/about',
-  },
-
-  {
-    title: 'Contact',
-
-    href: '/contact',
-  },
-]
 export const Nav = () => {
   const pathname = usePathname()
 
-  const [selectedIndicator, setSelectedIndicator] = useState(pathname)
+  const links = [
+    {
+      title: 'welcome',
+
+      href: '/',
+    },
+    {
+      title: 'imply',
+
+      href: '#imply',
+    },
+    {
+      title: 'experience',
+
+      href: '#experience',
+    },
+
+    {
+      title: 'contact',
+
+      href: '#contact',
+    },
+    {
+      title: 'portfolio',
+
+      href: '/portfolio',
+    },
+  ]
+
   return (
     <Observer>
       {() => (
-        <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className={styles.menu}>
+        <div className={styles.nav}>
           <div className={styles.body}>
-            <div
-              onMouseLeave={() => {
-                setSelectedIndicator(pathname)
-              }}
-              className={styles.nav}
-            >
-              <div className={styles.header}>
-                <p>Navigation</p>
-              </div>
+            {links.map((link, i) => {
+              const { title, href } = link
 
-              {navItems.map((data, index) => {
-                return (
-                  <Link
-                    key={index}
-                    data={{ ...data, index }}
-                    isActive={selectedIndicator == data.href}
-                    setSelectedIndicator={setSelectedIndicator}
-                  ></Link>
-                )
-              })}
-            </div>
-
-            <div className={styles.footer}>
-              <a>Awwwards</a>
-
-              <a>Instagram</a>
-
-              <a>Dribble</a>
-
-              <a>LinkedIn</a>
-            </div>
+              return (
+                <div key={`b_${i}`} className={styles.linkContainer}>
+                  {pathname !== '/portfolio' || title !== 'portfolio' ? (
+                    <motion.div custom={i} variants={perspective} initial="initial" animate="enter" exit="exit">
+                      {pathname === '/portfolio' ? <a href={'/main' + href}>{title}</a> : <a href={href}>{title}</a>}
+                    </motion.div>
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+              )
+            })}
           </div>
-          <Curve />
-        </motion.div>
+        </div>
       )}
     </Observer>
   )

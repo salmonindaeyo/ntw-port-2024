@@ -1,0 +1,53 @@
+.main {
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    }
+  
+  .gallery{
+    width: 70%;
+  }
+
+  .project{
+
+    border-top: 2px solid rgb(255, 255, 255);
+
+    padding-top: 0.8vw;
+
+    padding-bottom: 0.8vw;
+
+    cursor: pointer;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+  
+
+
+
+.project p:nth-of-type(1){
+
+
+}
+
+.project p:nth-of-type(2){
+
+
+}
+
+.project:last-of-type{
+
+    border-bottom: 2px solid rgb(255, 255, 255);
+
+}
+

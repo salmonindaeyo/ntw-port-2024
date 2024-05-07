@@ -12,34 +12,37 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { Imply } from '../components/imply'
 import { Experience } from '../components/experience'
 import Cursor from '../components/Cursor'
+import Curve from 'src/core/components/Curve/index'
+import { PortShow } from '../components/portshow'
+import { Contact } from '../components/contact'
 
 export const HomePage = () => {
   const [isActive, setIsActive] = useState(false)
 
   return (
-    <Observer>
-      {() => (
-        <div className="w-full min-w-[1300px] h-full select-none">
-          <div>
+    <>
+      <Curve backgroundColor={'#BCF366'}>
+        <div className="w-full min-w-[1300px]  h-full select-none">
+          <div className="border-x-8 border-white">
             <section className="scroll-section">
               <Welcome isActive={isActive} setIsActive={setIsActive} />
             </section>
-            <section className="scroll-section">
+            <section id="imply" className="scroll-section">
               <Imply />
             </section>
-            <section className="scroll-section">
+            <section id="experience" className="scroll-section">
               <Experience />
             </section>
-            <section className="scroll-section bg-blue-100">
-              <h2>Section four</h2>
+            <section className="scroll-section ">
+              <PortShow />
             </section>
-            <section className="scroll-section bg-red-100">
-              <h2>Section five</h2>
+            <section id="contact" className="scroll-section ">
+              <Contact />
             </section>
           </div>
           <Cursor isActive={isActive} />
         </div>
-      )}
-    </Observer>
+      </Curve>
+    </>
   )
 }

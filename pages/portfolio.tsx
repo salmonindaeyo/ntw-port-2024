@@ -1,15 +1,15 @@
 import React from 'react'
-import { HomePage } from 'src/presentation/home/pages/home_page'
+import { PortfolioPage } from 'src/presentation/portfolio/pages/portfolio_page'
 
-const HomeRoute = () => {
+const PortfolioRoute = () => {
   //---------------------
   //   RENDER
   //---------------------
-  return <div></div>
+  return <PortfolioPage />
 }
 export async function getServerSideProps(context) {
   return {
     props: {},
   }
 }
-export default HomeRoute
+export default PortfolioRoute

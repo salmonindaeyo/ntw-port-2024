@@ -7,6 +7,8 @@ import { useRouter } from 'next/router'
 import AOS from 'aos'
 import { useEffect } from 'react'
 import { Header } from '../src/core/components/header'
+import { AnimatePresence } from 'framer-motion'
+import '../styles/styles.scss'
 
 import 'aos/dist/aos.css'
 function MyApp({ Component, pageProps }) {
@@ -25,7 +27,9 @@ function MyApp({ Component, pageProps }) {
         <div>
           <Modal />
           <Header />
-          <Component {...pageProps} />
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} />
+          </AnimatePresence>
         </div>
       </QueryProviderLayout>
     </StoreProvider>

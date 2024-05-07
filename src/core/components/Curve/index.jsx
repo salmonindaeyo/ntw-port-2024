@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { text, curve, translate } from './anim'
+import { useMediaQuery } from 'react-responsive'
+
 const routes = {
   '/': 'Home',
   '/about': 'About',
@@ -40,16 +42,29 @@ export default function Curve({ children, backgroundColor }) {
       window.removeEventListener('resize', resize)
     }
   }, [])
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 960px)' })
 
   return (
-    <div className="page curve " style={{ backgroundColor }}>
-      <div style={{ opacity: dimensions.width == null ? 1 : 0 }} className="background" />
-      <motion.p className="route " {...anim(text)}>
-        {routes[router.route]}
-      </motion.p>
-      {dimensions.width != null && <SVG {...dimensions} />}
-      {children}
-    </div>
+    <>
+      {!isTabletOrMobile ? (
+        <div className="page curve " style={{ backgroundColor }}>
+          <div style={{ opacity: dimensions.width == null ? 1 : 0 }} className="background" />
+          <motion.p className="route " {...anim(text)}>
+            {routes[router.route]}
+          </motion.p>
+          {dimensions.width != null && <SVG {...dimensions} />}
+          {children}
+        </div>
+      ) : (
+        <div>
+          <div style={{ opacity: dimensions.width == null ? 1 : 0 }} />
+          <motion.p className="route " {...anim(text)}>
+            {routes[router.route]}
+          </motion.p>
+          {children}
+        </div>
+      )}
+    </>
   )
 }
 

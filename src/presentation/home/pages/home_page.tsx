@@ -15,7 +15,7 @@ import Cursor from '../components/Cursor'
 import Curve from 'src/core/components/Curve/index'
 import { PortShow } from '../components/portshow'
 import { Contact } from '../components/contact'
-
+import { Tech } from '../components/tech'
 export const HomePage = () => {
   const [isActive, setIsActive] = useState(false)
 
@@ -29,6 +29,9 @@ export const HomePage = () => {
             </section>
             <section id="imply" className="scroll-section">
               <Imply />
+            </section>
+            <section id="tech" className="scroll-section">
+              <Tech />
             </section>
             <section id="experience" className="scroll-section">
               <Experience />

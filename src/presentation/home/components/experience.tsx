@@ -9,6 +9,7 @@ import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { AnimatePresence, motion } from 'framer-motion'
+import gsap from 'gsap'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -85,7 +86,7 @@ export const Experience = () => {
   return (
     <Observer>
       {() => (
-        <div style={divStyle} className="w-full h-full flex flex-col">
+        <div style={divStyle} className="w-full relative h-full flex flex-col">
           <div className="h-3/5 flex w-full justify-between">
             <div className=" h-full">
               <div data-aos="fade-up" data-aos-duration="1500" className="flex flex-col h-full justify-center ml-10">
@@ -102,6 +103,7 @@ export const Experience = () => {
                 </div>
               </div>
             </div>
+
             <div className="h-full flex items-end pr-10 pb-10 text-white">
               <div className="flex flex-col">
                 <div data-aos="fade-up" data-aos-duration="1500" className="flex space-x-4">

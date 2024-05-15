@@ -41,13 +41,14 @@ export const Welcome = ({ setIsActive, isActive }) => {
 
   useEffect(() => {}, [])
 
-  //---------------------
-  //   RENDER
-  //---------------------
+  const divStyle = {
+    backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/Desktop_-_1.png?alt=media&token=dafd5fd0-3656-4844-a9db-f6ea924f6cf3")`,
+    backgroundSize: 'cover',
+  }
   return (
     <Observer>
       {() => (
-        <div className="bg-[#0F3DE1] flex  w-full h-full">
+        <div style={divStyle} className=" flex  w-full h-full">
           <div className="border-r w-1/5  flex flex-col">
             <div className="w-full h-[10%] border-b"></div>
             <div className="border-b h-[45%]"> </div>
